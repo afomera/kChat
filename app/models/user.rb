@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :chatroom_users
+  has_many :chatrooms, through: :chatroom_users
+  has_many :messages
+  
   validates_presence_of :first_name, :last_name
 
   # Generate a username for our user based of the first and last name
